@@ -9,16 +9,85 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <header class="header"><h1></h1></header>
+    <header class="header">
+      <h1 class="blind">ColaCola</h1>
+      <img class="img_logo" src="img/logo.png" alt="colacola" />
+    </header>
     <main>
-      <section>
-        <h2 class="blind"></h2>
-        <section>
-          <h2 class="blind"></h2>
+      <section class="vending_wrapper">
+        <h2 class="blind">벤딩 머신</h2>
+        <ul class="vending_menu">
+          <h2 class="blind">콜라 메뉴</h2>
+          <figure class="cola_wrapper">
+            <img class="cola" src="img/Original_Cola.png" alt="Original_Cola" />
+            <figcaption>
+              <span>Original_Cola</span>
+              <button type="button">1000원</button>
+            </figcaption>
+          </figure>
+          <figure class="cola_wrapper">
+            <img class="cola" src="img/Violet_Cola.png" alt="Violet_Cola" />
+            <figcaption>
+              <span>Violet_Cola</span>
+              <button type="button">1000원</button>
+            </figcaption>
+          </figure>
+          <figure class="cola_wrapper">
+            <img class="cola" src="img/Yellow_Cola.png" alt="Yellow_Cola" />
+            <figcaption>
+              <span>Yellow_Cola</span>
+              <button type="button">1000원</button>
+            </figcaption>
+          </figure>
+          <figure class="cola_wrapper">
+            <img class="cola" src="img/Cool_Cola.png" alt="Cool_Cola" />
+            <figcaption>
+              <span>Cool_Cola</span>
+              <button type="button">1000원</button>
+            </figcaption>
+          </figure>
+          <figure class="cola_wrapper">
+            <img class="cola" src="img/Green_Cola.png" alt="Green_Cola" />
+            <figcaption>
+              <span>Green_Cola</span>
+              <button type="button">1000원</button>
+            </figcaption>
+          </figure>
+          <figure class="cola_wrapper">
+            <img class="cola" src="img/Orange_Cola.png" alt="Orange_Cola" />
+            <figcaption>
+              <span>Orange_Cola</span>
+              <button type="button">1000원</button>
+            </figcaption>
+          </figure>
+        </ul>
+        <section class="controller">
+          <div class="left_money">
+            <span>잔액 :</span>
+            <span>1000 원</span>
+          </div>
+          <button type="button">거스름돈 반환</button>
+          <label class="blind" for="money_input">입금액 입력</label>
+          <input id="money_input" type="text" placeholder="입금액 입력" />
+          <button type="button">입금</button>
+          <ul class="shopping_list">
+            <li class="shopping_item">
+              <img src="img/Original_Cola.png" alt="" />
+              <span>Original_Cola</span>
+              <div class="item_count">1</div>
+            </li>
+          </ul>
+          <button class="get_button" type="button">획득</button>
         </section>
       </section>
-      <section>
+      <section class="vending_result">
         <h2 class="blind"></h2>
+        <div class="money_wrapper">
+          <div class="own_money"></div>
+        </div>
+        <section class="output">
+          <h2>획득한 음료</h2>
+        </section>
       </section>
     </main>
     <script></script>

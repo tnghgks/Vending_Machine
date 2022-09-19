@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap");
+
+:root {
+  /* color */
+  --bg-color: #eae8fe;
+  --button-color: #6327fe;
+
+  /* color */
+  --base-font-size: 9px;
+  --button-font-size: 12px;
+  --money-font-size: 14px;
+}
+
+button {
+  border: 0px;
+}
+.blind {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Noto Sans KR";
+  font-size: var(--base-font-size);
+}
+
+header {
+  margin-bottom: 67px;
+}
+
+img.img_logo {
+  width: 386px;
+}
+
+main {
+  display: flex;
+}
+section.vending_wrapper {
+  width: 360px;
+  margin-right: 28px;
+  padding: 31px 27px 28px 27px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+ul.vending_menu {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 94px);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+ul.vending_menu > figure.cola_wrapper {
+  width: 94px;
+  height: 130px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+  background-color: #fff; /*삭제예정*/
+}
+
+figure.select {
+  border: 3px solid #6327fe;
+}
+
+figure.cola_wrapper > figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 13px;
+}
+figure.cola_wrapper button {
+  width: 70px;
+  color: white;
+  background: var(--button-color);
+  border-radius: 50px;
+  border: 0px;
+  margin-top: 7px;
+  text-align: center;
+  padding: 5px 0px;
+  font-weight: 500;
+  font-size: var(--button-font-size);
+  line-height: 100%;
+}
+figure.cola_wrapper > img.cola {
+  width: 36px;
+  height: 65px;
+  border-radius: 10px;
+}
+
+section.controller {
+  display: grid;
+  grid-template-columns: 200px 94px;
+  gap: 12px;
+}
+section.controller * {
+  border-radius: 5px;
+}
+
+section.controller button {
+  font-size: 13px;
+  line-height: 19px;
+  background-color: #fff;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+section.controller > div.left_money {
+  background: var(--bg-color);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--money-font-size);
+  line-height: 20px;
+  padding: 6px 10px 7px 10px;
+}
+section.controller > input#money_input {
+  height: 33px;
+  border: 1px solid #bdbdbd;
+  padding: 6px;
+  box-sizing: border-box;
+}
+section.controller > button.get_button {
+  background: var(--button-color);
+  height: 106px;
+}
+section.controller > ul.shopping_list {
+  height: 106px;
+  background-color: antiquewhite;
+  padding: 12px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+/* 스크롤 수정 */
+ul.shopping_list::-webkit-scrollbar {
+  width: 12px;
+}
+
+ul.shopping_list::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  background-clip: padding-box;
+  display: block;
+  width: 4px;
+  border-radius: 50px;
+  border: 4px solid transparent;
+}
+ul.shopping_list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+ul.shopping_list > li {
+  position: relative;
+  background-color: var(--bg-color);
+  width: 170px;
+  height: 46px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+}
+ul.shopping_list img {
+  width: 18px;
+  height: 33px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+li.shopping_item > div.item_count {
+  position: absolute;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+}
+
+/* 결과창 */
+section.vending_result {
+  width: 360px;
+  background-color: #6327fe;
+}
+
+section.vending_result > div.money_wrapper {
+  width: 360px;
+  height: 50px;
+  background-color: blue;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.money_wrapper > div.own_money {
+  width: 306px;
+  height: 32px;
+  background: var(--bg-color);
+  border-radius: 5px;
+}
