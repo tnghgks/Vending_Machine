@@ -4,16 +4,36 @@
   /* color */
   --bg-color: #eae8fe;
   --button-color: #6327fe;
+  --mobile-bg-color: #fff;
 
   /* color */
   --base-font-size: 9px;
   --button-font-size: 12px;
+  --sub-button-font-size: 13px;
   --money-font-size: 14px;
 }
-
+/* 리셋 */
 button {
   border: 0px;
 }
+/* 스크롤 수정 */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  background-clip: padding-box;
+  display: block;
+  width: 4px;
+  border-radius: 50px;
+  border: 4px solid transparent;
+}
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/*스크린 리더 전용*/
 .blind {
   position: absolute;
   clip: rect(0 0 0 0);
@@ -22,7 +42,7 @@ button {
   margin: -1px;
   overflow: hidden;
 }
-
+/* 스타일 */
 body {
   background: var(--bg-color);
   display: flex;
@@ -43,6 +63,7 @@ img.img_logo {
 main {
   display: flex;
 }
+/* 메인 섹션 스타일*/
 section.vending_wrapper {
   width: 360px;
   margin-right: 28px;
@@ -50,6 +71,8 @@ section.vending_wrapper {
   box-sizing: border-box;
   background-color: #fff;
 }
+
+/* 벤딩 메뉴 스타일*/
 ul.vending_menu {
   margin: 0 auto;
   display: grid;
@@ -99,7 +122,7 @@ figure.cola_wrapper > img.cola {
   height: 65px;
   border-radius: 10px;
 }
-
+/* 컨트롤러 스타일 */
 section.controller {
   display: grid;
   grid-template-columns: 200px 94px;
@@ -110,7 +133,7 @@ section.controller * {
 }
 
 section.controller button {
-  font-size: 13px;
+  font-size: var(--sub-button-font-size);
   line-height: 19px;
   background-color: #fff;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
@@ -135,35 +158,23 @@ section.controller > input#money_input {
 section.controller > button.get_button {
   background: var(--button-color);
   height: 106px;
+  font-weight: 700;
+  font-size: var(--sub-button-font-size);
+  line-height: 19px;
+  color: #fff;
 }
 section.controller > ul.shopping_list {
   height: 106px;
-  background-color: antiquewhite;
+  background-color: var(--bg-color);
   padding: 12px;
   overflow-y: scroll;
   overflow-x: hidden;
   box-sizing: border-box;
 }
-/* 스크롤 수정 */
-ul.shopping_list::-webkit-scrollbar {
-  width: 12px;
-}
-
-ul.shopping_list::-webkit-scrollbar-thumb {
-  background-color: #fff;
-  background-clip: padding-box;
-  display: block;
-  width: 4px;
-  border-radius: 50px;
-  border: 4px solid transparent;
-}
-ul.shopping_list::-webkit-scrollbar-track {
-  background-color: transparent;
-}
 
 ul.shopping_list > li {
   position: relative;
-  background-color: var(--bg-color);
+  background-color: #fff;
   width: 170px;
   height: 46px;
   margin-bottom: 6px;
@@ -190,22 +201,149 @@ li.shopping_item > div.item_count {
 /* 결과창 */
 section.vending_result {
   width: 360px;
-  background-color: #6327fe;
 }
 
 section.vending_result > div.money_wrapper {
   width: 360px;
   height: 50px;
-  background-color: blue;
+  background-color: #fff;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1px;
 }
 
 div.money_wrapper > div.own_money {
   width: 306px;
-  height: 32px;
+  box-sizing: border-box;
   background: var(--bg-color);
   border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--money-font-size);
+  line-height: 20px;
+  padding: 6px 10px 7px 10px;
+}
+div.own_money > span:nth-child(2) {
+  font-weight: 700;
+}
+
+section.output {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 27px;
+  box-sizing: border-box;
+  height: 473px;
+}
+
+section.output > h2 {
+  margin-top: 25px;
+  margin-bottom: 13px;
+  font-size: var(--money-font-size);
+  line-height: 20px;
+  font-weight: 700;
+}
+
+section.own_cola {
+  width: 306px;
+  height: 364px;
+  background-color: var(--bg-color);
+  margin-bottom: 6px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+}
+
+section.output > span.used_money {
+  margin-bottom: 26px;
+  font-weight: 500;
+  font-size: var(--button-font-size);
+  line-height: 17px;
+  align-self: flex-end;
+}
+
+section.own_cola > ul.own_cola_list {
+  height: 100%;
+  background-color: var(--bg-color);
+  padding: 12px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+ul.own_cola_list > li {
+  position: relative;
+  background-color: #fff;
+  width: 276px;
+  height: 46px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+ul.own_cola_list img {
+  width: 18px;
+  height: 33px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+li.own_cola_item > div.item_count {
+  position: absolute;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+}
+/*  미디어 쿼리 */
+@media (max-width: 360px) {
+  body {
+    background-color: var(--mobile-bg-color);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Noto Sans KR";
+    font-size: var(--base-font-size);
+  }
+
+  header {
+    margin-bottom: 18px;
+  }
+
+  img.img_logo {
+    width: 166px;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  section.vending_wrapper {
+    padding: 31px 27px 20px 27px;
+    margin-right: 0px;
+  }
+
+  section.controller > input#money_input {
+    text-align: right;
+  }
+
+  ul.shopping_list > li {
+    border: 1px solid #bdbdbd;
+    background-color: #fff;
+    width: 170px;
+    height: 46px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+  }
+
+  section.vending_result > div.money_wrapper {
+    margin-bottom: 41px;
+  }
 }
