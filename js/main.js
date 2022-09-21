@@ -4,6 +4,8 @@ const $shoppingList = document.querySelector("#shoppingList");
 const $totalMoney = document.querySelector("#totalMoney");
 const $leftMoney = document.querySelector("#leftMoney");
 const $getButton = document.querySelector("#getButton");
+const $inputMoneyBtn = document.querySelector("#inputMoneyBtn");
+const $moneyInput = document.querySelector("#money_input");
 
 let totalMoney = 25000;
 let leftMoney = 1000;
@@ -147,6 +149,17 @@ function leftMoneySet() {
   $leftMoney.innerText = leftMoney.toLocaleString();
 }
 
+function spendMoney(cost) {
+  if (leftMoney - cost >= 0) {
+    leftMoney -= cost;
+    leftMoneySet();
+    return true;
+  } else {
+    alert("소지금이 부족합니다. 입금해주세요.");
+    return false;
+  }
+}
+
 function handleBuyButton(event) {
   const colaName = event.target.previousSibling.innerHTML;
   const drinkTypeItem = drinkType.find((cola) => cola.name == colaName);
@@ -155,11 +168,19 @@ function handleBuyButton(event) {
       (cola) => cola.name == drinkTypeItem.name
     );
     if (tempColaListItem) {
+      const haveMoney = spendMoney(drinkTypeItem.price); // 소지금이 없는데 자꾸 캔이
+      if (!haveMoney) {
+        return;
+      }
       tempColaListItem.count += 1;
       drinkTypeItem.count -= 1;
       drawVendingMenu(drinkType);
       drawShoppingListItem(tempList);
     } else {
+      const haveMoney = spendMoney(drinkTypeItem.price);
+      if (!haveMoney) {
+        return;
+      }
       drinkTypeItem.count -= 1;
       tempList.push({ name: drinkTypeItem.name, count: 1 });
       drawVendingMenu(drinkType);
@@ -171,7 +192,6 @@ function handleBuyButton(event) {
 }
 
 function pushTempToOwn() {
-  // 장바구니 => 소지품 미완성
   let excluded = [];
   ownColaList.forEach((ownCola) => {
     tempList.forEach((tempCola) => {
@@ -182,6 +202,25 @@ function pushTempToOwn() {
       }
     });
   });
+
+  const result = tempList.filter((temCola) => {
+    return !ownColaList.some((ownCola) => temCola.name === ownCola.name);
+  });
+  tempList = [];
+
+  ownColaList.push(...result);
+  drawOwnColaList(ownColaList);
+  drawShoppingListItem(tempList);
+}
+function inputMoney() {
+  if (totalMoney - parseInt($moneyInput.value) >= 0) {
+    totalMoney -= parseInt($moneyInput.value);
+    leftMoney += parseInt($moneyInput.value);
+    totalMoneySet();
+    leftMoneySet();
+  } else {
+    alert("돈이 부족합니다.");
+  }
 }
 
 function init() {
@@ -191,7 +230,7 @@ function init() {
   drawShoppingListItem(tempList);
   drawVendingMenu(drinkType);
 }
-
+// 장바구니에서 환불기능 만들기
 $getButton.addEventListener("click", pushTempToOwn);
-
+$inputMoneyBtn.addEventListener("click", inputMoney);
 init();
