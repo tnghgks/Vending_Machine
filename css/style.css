@@ -15,6 +15,7 @@
 /* 리셋 */
 button {
   border: 0px;
+  cursor: pointer;
 }
 /* 스크롤 수정 */
 *::-webkit-scrollbar {
@@ -34,7 +35,7 @@ button {
 }
 
 /*스크린 리더 전용*/
-.blind {
+.text-hide {
   position: absolute;
   clip: rect(0 0 0 0);
   width: 1px;
@@ -79,6 +80,7 @@ ul.vending_menu {
   grid-template-columns: repeat(3, 94px);
   gap: 12px;
   margin-bottom: 20px;
+  min-height: 272px;
 }
 ul.vending_menu > figure.cola_wrapper {
   width: 94px;
@@ -117,9 +119,25 @@ figure.cola_wrapper button {
   font-size: var(--button-font-size);
   line-height: 100%;
 }
-figure.cola_wrapper > img.cola {
+figure.cola_wrapper > img {
   width: 36px;
   height: 65px;
+  border-radius: 10px;
+}
+button.buy_button::after {
+  content: "원";
+}
+
+.sold_out::after {
+  content: "";
+  position: absolute;
+  width: 94px;
+  height: 130px;
+  background: rgba(0, 0, 0, 0.8);
+  background-image: url("../img/Sold-out.png");
+  background-size: 57.51px 44.85px;
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: 10px;
 }
 /* 컨트롤러 스타일 */
@@ -148,6 +166,9 @@ section.controller > div.left_money {
   font-size: var(--money-font-size);
   line-height: 20px;
   padding: 6px 10px 7px 10px;
+}
+div.left_money > span#leftMoney::after {
+  content: "원";
 }
 section.controller > input#money_input {
   height: 33px;
@@ -228,6 +249,10 @@ div.money_wrapper > div.own_money {
 }
 div.own_money > span:nth-child(2) {
   font-weight: 700;
+}
+
+div.own_money > span:nth-child(2)::after {
+  content: "원";
 }
 
 section.output {
