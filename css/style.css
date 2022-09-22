@@ -125,7 +125,7 @@ figure.cola_wrapper > img {
   border-radius: 10px;
 }
 button.buy_button::after {
-  content: "원";
+  content: " 원";
 }
 
 .sold_out::after {
@@ -167,8 +167,9 @@ section.controller > div.left_money {
   line-height: 20px;
   padding: 6px 10px 7px 10px;
 }
+
 div.left_money > span#leftMoney::after {
-  content: "원";
+  content: " 원";
 }
 section.controller > input#money_input {
   height: 33px;
@@ -252,7 +253,7 @@ div.own_money > span:nth-child(2) {
 }
 
 div.own_money > span:nth-child(2)::after {
-  content: "원";
+  content: " 원";
 }
 
 section.output {
@@ -309,6 +310,8 @@ ul.own_cola_list > li {
   display: flex;
   align-items: center;
   border-radius: 5px;
+  font-size: 9px;
+  line-height: 13px;
 }
 ul.own_cola_list img {
   width: 18px;
@@ -318,13 +321,17 @@ ul.own_cola_list img {
 }
 li.own_cola_item > div.item_count {
   position: absolute;
-  right: 10px;
+  right: 8px;
+  top: 8px;
   width: 30px;
   height: 30px;
   border: 1px solid #bdbdbd;
+  font-size: 14px;
+  line-height: 20px;
   border-radius: 5px;
   text-align: center;
   line-height: 30px;
+  box-sizing: border-box;
 }
 /*  미디어 쿼리 */
 @media (max-width: 360px) {

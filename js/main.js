@@ -168,7 +168,7 @@ function handleBuyButton(event) {
       (cola) => cola.name == drinkTypeItem.name
     );
     if (tempColaListItem) {
-      const haveMoney = spendMoney(drinkTypeItem.price); // 소지금이 없는데 자꾸 캔이
+      const haveMoney = spendMoney(drinkTypeItem.price);
       if (!haveMoney) {
         return;
       }
@@ -216,6 +216,7 @@ function inputMoney() {
   if (totalMoney - parseInt($moneyInput.value) >= 0) {
     totalMoney -= parseInt($moneyInput.value);
     leftMoney += parseInt($moneyInput.value);
+    $moneyInput.value = "";
     totalMoneySet();
     leftMoneySet();
   } else {
