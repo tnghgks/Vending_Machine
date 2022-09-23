@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap");
 
 :root {
   /* color */
@@ -87,45 +87,56 @@ ul.vending_menu > figure.cola_wrapper {
   height: 130px;
   border-radius: 10px;
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
-  background-color: #fff; /*삭제예정*/
 }
 
 figure.select {
-  border: 3px solid #6327fe;
+  outline: 3px solid #6327fe;
 }
 
 figure.cola_wrapper > figcaption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-weight: 500;
   font-size: 9px;
   line-height: 13px;
+  font-family: inherit;
 }
+
+figcaption.cola_discription > span {
+  display: block;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 500;
+  -webkit-transform: scale(0.9);
+  line-height: 13px;
+  margin: 5px 0px auto auto;
+}
+
 figure.cola_wrapper button {
-  width: 70px;
   color: white;
+  width: 70px;
   background: var(--button-color);
   border-radius: 50px;
   border: 0px;
-  margin-top: 7px;
+  margin-top: 5px;
   text-align: center;
-  padding: 5px 0px;
-  font-weight: 500;
+  padding: 5px 16px 5px 15px;
   font-size: var(--button-font-size);
   line-height: 100%;
+  font-family: inherit;
+  font-weight: 500;
+  margin: 5px 0px auto auto;
 }
 figure.cola_wrapper > img {
   width: 36px;
   height: 65px;
   border-radius: 10px;
+  margin-top: 11px;
 }
 button.buy_button::after {
-  content: " 원";
+  content: "원";
 }
 
 .sold_out::after {
@@ -152,9 +163,11 @@ section.controller * {
 
 section.controller button {
   font-size: var(--sub-button-font-size);
-  line-height: 19px;
   background-color: #fff;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 19px;
 }
 
 section.controller > div.left_money {
@@ -166,6 +179,7 @@ section.controller > div.left_money {
   font-size: var(--money-font-size);
   line-height: 20px;
   padding: 6px 10px 7px 10px;
+  font-weight: 700;
 }
 
 div.left_money > span#leftMoney::after {
@@ -176,6 +190,9 @@ section.controller > input#money_input {
   border: 1px solid #bdbdbd;
   padding: 6px;
   box-sizing: border-box;
+  color: #bdbdbd;
+  opacity: 0.5;
+  font-family: inherit;
 }
 section.controller > button.get_button {
   background: var(--button-color);
@@ -184,6 +201,7 @@ section.controller > button.get_button {
   font-size: var(--sub-button-font-size);
   line-height: 19px;
   color: #fff;
+  font-family: inherit;
 }
 section.controller > ul.shopping_list {
   height: 106px;
@@ -192,6 +210,7 @@ section.controller > ul.shopping_list {
   overflow-y: scroll;
   overflow-x: hidden;
   box-sizing: border-box;
+  border: 1px solid #bdbdbd;
 }
 
 ul.shopping_list > li {
@@ -223,6 +242,8 @@ li.shopping_item > div.item_count {
 /* 결과창 */
 section.vending_result {
   width: 360px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 section.vending_result > div.money_wrapper {
@@ -275,7 +296,7 @@ section.output > h2 {
   font-weight: 700;
 }
 
-section.own_cola {
+div.own_cola {
   width: 306px;
   height: 364px;
   background-color: var(--bg-color);
@@ -292,7 +313,7 @@ section.output > span.used_money {
   align-self: flex-end;
 }
 
-section.own_cola > ul.own_cola_list {
+div.own_cola > ul.own_cola_list {
   height: 100%;
   background-color: var(--bg-color);
   padding: 12px;
@@ -319,6 +340,10 @@ ul.own_cola_list img {
   margin-left: 10px;
   margin-right: 10px;
 }
+li.own_cola_item > span {
+  font-size: 9px;
+  -webkit-transform: scale(0.9);
+}
 li.own_cola_item > div.item_count {
   position: absolute;
   right: 8px;
@@ -333,7 +358,17 @@ li.own_cola_item > div.item_count {
   line-height: 30px;
   box-sizing: border-box;
 }
+
 /*  미디어 쿼리 */
+@media (max-width: 748px) {
+  main {
+    flex-direction: column;
+  }
+  section.vending_wrapper {
+    margin-right: 0px;
+  }
+}
+
 @media (max-width: 360px) {
   body {
     background-color: var(--mobile-bg-color);
@@ -353,7 +388,6 @@ li.own_cola_item > div.item_count {
   }
 
   main {
-    display: flex;
     flex-direction: column;
   }
   section.vending_wrapper {

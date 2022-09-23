@@ -25,30 +25,23 @@ const drinkType = [
   },
   {
     id: 2,
-    name: "Green_Cola",
-    imgPath: "img/Green_Cola.png",
-    alt: "녹색 캔 콜라",
+    name: "Violet_Cola",
+    imgPath: "img/Violet_Cola.png",
+    alt: "보라색 캔 콜라",
+
     price: 1000,
     count: 0,
   },
   {
     id: 3,
-    name: "Orange_Cola",
-    imgPath: "img/Orange_Cola.png",
-    alt: "오렌지색 캔 콜라",
+    name: "Yellow_Cola",
+    imgPath: "img/Yellow_Cola.png",
+    alt: "노란 캔 콜라",
     price: 1000,
     count: 3,
   },
   {
     id: 4,
-    name: "Violet_Cola",
-    imgPath: "img/Violet_Cola.png",
-    alt: "보라색 캔 콜라",
-    price: 1000,
-    count: 3,
-  },
-  {
-    id: 5,
     name: "Cool_Cola",
     imgPath: "img/Cool_Cola.png",
     alt: "하늘색 캔 콜라",
@@ -56,10 +49,18 @@ const drinkType = [
     count: 3,
   },
   {
+    id: 5,
+    name: "Green_Cola",
+    imgPath: "img/Green_Cola.png",
+    alt: "녹색 캔 콜라",
+    price: 1000,
+    count: 3,
+  },
+  {
     id: 6,
-    name: "Yellow_Cola",
-    imgPath: "img/Yellow_Cola.png",
-    alt: "노란 캔 콜라",
+    name: "Orange_Cola",
+    imgPath: "img/Orange_Cola.png",
+    alt: "오렌지색 캔 콜라",
     price: 1000,
     count: 3,
   },
@@ -136,6 +137,7 @@ function drawVendingMenu(drinkArr) {
     button.classList = "buy_button";
     button.innerText = drinkObj.price;
     button.addEventListener("click", handleBuyButton);
+    figcaption.classList = "cola_discription";
     figcaption.append(span, button);
     figure.append(img, figcaption);
     $vendingMenu.append(figure);
