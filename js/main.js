@@ -6,6 +6,7 @@ const $leftMoney = document.querySelector("#leftMoney");
 const $getButton = document.querySelector("#getButton");
 const $inputMoneyBtn = document.querySelector("#inputMoneyBtn");
 const $moneyInput = document.querySelector("#money_input");
+const $vendingFigures = document.getElementsByClassName("cola_wrapper");
 
 let totalMoney = 25000;
 let leftMoney = 1000;
@@ -141,6 +142,7 @@ function drawVendingMenu(drinkArr) {
     figcaption.append(span, button);
     figure.append(img, figcaption);
     $vendingMenu.append(figure);
+    eventListener();
   });
 }
 
@@ -226,14 +228,29 @@ function inputMoney() {
   }
 }
 
+function menuSelect(event) {
+  if (event.currentTarget.classList.contains("sold_out") === true) {
+    return;
+  }
+  event.currentTarget.classList.toggle("select");
+}
+function eventListener() {
+  $getButton.addEventListener("click", pushTempToOwn);
+  $inputMoneyBtn.addEventListener("click", inputMoney);
+  for (let i = 0; i < $vendingFigures.length; i++) {
+    $vendingFigures[i].addEventListener("click", menuSelect);
+  }
+}
 function init() {
   totalMoneySet();
   leftMoneySet();
   drawOwnColaList(ownColaList);
   drawShoppingListItem(tempList);
   drawVendingMenu(drinkType);
+  $vendingFigures[0].classList.toggle("select");
+  $vendingFigures[4].classList.toggle("select");
 }
+
 // 장바구니에서 환불기능 만들기
-$getButton.addEventListener("click", pushTempToOwn);
-$inputMoneyBtn.addEventListener("click", inputMoney);
+
 init();
