@@ -82,7 +82,7 @@ ul.vending_menu {
   margin-bottom: 20px;
   min-height: 272px;
 }
-ul.vending_menu > figure.cola_wrapper {
+ul.vending_menu > li.cola_wrapper {
   width: 94px;
   height: 130px;
   border-radius: 10px;
@@ -92,19 +92,30 @@ ul.vending_menu > figure.cola_wrapper {
   align-items: center;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
 }
-
-figure.select {
+ul.vending_menu > li.cola_wrapper {
+  width: 94px;
+  height: 130px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+}
+ul.vending_menu > li:hover {
   outline: 3px solid #6327fe;
 }
-
-figure.cola_wrapper > figcaption {
+ul.vending_menu > li.select {
+  outline: 3px solid #6327fe;
+}
+li.cola_wrapper > div.cola_caption {
   font-weight: 500;
   font-size: 9px;
   line-height: 13px;
   font-family: inherit;
 }
 
-figcaption.cola_discription > span {
+div.cola_caption > span {
   display: block;
   text-align: center;
   font-size: 9px;
@@ -114,7 +125,7 @@ figcaption.cola_discription > span {
   margin: 5px 0px auto auto;
 }
 
-figure.cola_wrapper button {
+li.cola_wrapper button {
   color: white;
   width: 70px;
   background: var(--button-color);
@@ -129,7 +140,7 @@ figure.cola_wrapper button {
   font-weight: 500;
   margin: 5px 0px auto auto;
 }
-figure.cola_wrapper > img {
+li.cola_wrapper > img {
   width: 36px;
   height: 65px;
   border-radius: 10px;
@@ -146,9 +157,9 @@ button.buy_button::after {
   height: 130px;
   background: rgba(0, 0, 0, 0.8);
   background-image: url("../img/Sold-out.png");
-  background-size: 57.51px 44.85px;
+  background-size: 62px 50px;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% 55%;
   border-radius: 10px;
 }
 /* 컨트롤러 스타일 */
@@ -156,6 +167,10 @@ section.controller {
   display: grid;
   grid-template-columns: 200px 94px;
   gap: 12px;
+  grid-template-areas:
+    "left_money left_money_btn"
+    "money_form ."
+    "shopping_list get_button";
 }
 section.controller * {
   border-radius: 5px;
@@ -180,12 +195,26 @@ section.controller > div.left_money {
   line-height: 20px;
   padding: 6px 10px 7px 10px;
   font-weight: 700;
+  grid-area: left_money;
 }
-
+section.controller > button#MoneyReturnBtn {
+  grid-area: left_money_btn;
+}
+section.controller > form#money_form {
+  display: flex;
+  justify-content: space-between;
+  grid-area: money_form;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.money_unit::after {
+  content: " 원";
+}
 div.left_money > span#leftMoney::after {
   content: " 원";
 }
-section.controller > input#money_input {
+
+form#money_form > input#money_input {
   height: 33px;
   border: 1px solid #bdbdbd;
   padding: 6px;
@@ -193,6 +222,9 @@ section.controller > input#money_input {
   color: #bdbdbd;
   opacity: 0.5;
   font-family: inherit;
+}
+form#money_form > button#inputMoneyBtn {
+  width: 94px;
 }
 section.controller > button.get_button {
   background: var(--button-color);
@@ -202,6 +234,7 @@ section.controller > button.get_button {
   line-height: 19px;
   color: #fff;
   font-family: inherit;
+  grid-area: get_button;
 }
 section.controller > ul.shopping_list {
   height: 106px;
@@ -211,6 +244,7 @@ section.controller > ul.shopping_list {
   overflow-x: hidden;
   box-sizing: border-box;
   border: 1px solid #bdbdbd;
+  grid-area: shopping_list;
 }
 
 ul.shopping_list > li {

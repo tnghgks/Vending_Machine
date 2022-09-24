@@ -18,32 +18,39 @@
         <h2 class="text-hide">벤딩 머신</h2>
         <ul id="vendingMenu" class="vending_menu">
           <!-- 
-          <figure class="cola_wrapper">
+          <li class="cola_wrapper">
             <img src="img/Original_Cola.png" alt="빨간 오리지널 캔 콜라" />
-            <figcaption>
+            <div class="cola_caption">
               <span>Original_Cola</span>
               <button class="buy_button" type="button">1000원</button>
-            </figcaption>
-          </figure>
-          <figure class="cola_wrapper sold_out">
+            </div>
+          </li>
+          <li class="cola_wrapper sold_out">
             <img src="img/Violet_Cola.png" alt="보라색 캔 콜라" />
-            <figcaption>
+            <div class="cola_caption">
               <span>Violet_Cola</span>
               <button class="buy_button" type="button">1000원</button>
-            </figcaption>
-          </figure>
+            </div>
+          </li>
           -->
         </ul>
         <section class="controller">
           <h2 class="text-hide">사용자 입력 버튼</h2>
           <div class="left_money">
             <span>잔액 :</span>
-            <span id="leftMoney"></span>
+            <span id="leftMoney" class="money_unit"></span>
           </div>
-          <button type="button">거스름돈 반환</button>
+          <button id="MoneyReturnBtn" type="button">거스름돈 반환</button>
           <label class="text-hide" for="money_input">입금액 입력</label>
-          <input id="money_input" type="number" placeholder="입금액 입력" />
-          <button id="inputMoneyBtn" type="button">입금</button>
+          <form id="money_form" action="">
+            <input
+              id="money_input"
+              type="number"
+              placeholder="입금액 입력"
+              required
+            />
+            <button id="inputMoneyBtn">입금</button>
+          </form>
           <ul id="shoppingList" class="shopping_list">
             <!-- <li class="shopping_item">
               <img src="img/Original_Cola.png" alt="" />

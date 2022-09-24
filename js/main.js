@@ -6,7 +6,8 @@ const $leftMoney = document.querySelector("#leftMoney");
 const $getButton = document.querySelector("#getButton");
 const $inputMoneyBtn = document.querySelector("#inputMoneyBtn");
 const $moneyInput = document.querySelector("#money_input");
-const $vendingFigures = document.getElementsByClassName("cola_wrapper");
+const $vendingItem = document.getElementsByClassName("cola_wrapper");
+const $MoneyReturnBtn = document.querySelector("#MoneyReturnBtn");
 
 let totalMoney = 25000;
 let leftMoney = 1000;
@@ -77,7 +78,6 @@ let ownColaList = [
 let tempList = [
   { name: "Original_Cola", count: 1 },
   { name: "Green_Cola", count: 2 },
-  { name: "Cool_Cola", count: 1 },
 ];
 
 function drinkMatch(obj) {
@@ -117,19 +117,22 @@ function drawShoppingListItem(drinkArr) {
 }
 
 function drawVendingMenu(drinkArr) {
-  $vendingMenu.innerHTML = `<h2 class="text-hide">콜라 메뉴</h2>`;
+  $vendingMenu.innerHTML = "";
   drinkArr.forEach((obj) => {
     const drinkObj = drinkMatch(obj);
-    const figure = document.createElement("figure");
+    const li = document.createElement("li");
     const img = document.createElement("img");
-    const figcaption = document.createElement("figcaption");
+    const div = document.createElement("div");
     const span = document.createElement("span");
     const button = document.createElement("button");
 
     if (drinkObj.count == 0) {
-      figure.classList = "cola_wrapper sold_out";
+      li.classList = "cola_wrapper sold_out";
     } else {
-      figure.classList = "cola_wrapper";
+      li.classList = "cola_wrapper";
+    }
+    if (menuInTempList(drinkObj.name)) {
+      li.classList.add("select");
     }
     img.src = drinkObj.imgPath;
     img.alt = drinkObj.alt;
@@ -137,13 +140,15 @@ function drawVendingMenu(drinkArr) {
     button.type = "button";
     button.classList = "buy_button";
     button.innerText = drinkObj.price;
-    button.addEventListener("click", handleBuyButton);
-    figcaption.classList = "cola_discription";
-    figcaption.append(span, button);
-    figure.append(img, figcaption);
-    $vendingMenu.append(figure);
+    div.classList = "cola_caption";
+    div.append(span, button);
+    li.append(img, div);
+    $vendingMenu.append(li);
     eventListener();
   });
+}
+function menuInTempList(name) {
+  return tempList.some((tempCola) => tempCola.name == name);
 }
 
 function totalMoneySet() {
@@ -165,7 +170,8 @@ function spendMoney(cost) {
 }
 
 function handleBuyButton(event) {
-  const colaName = event.target.previousSibling.innerHTML;
+  const colaName = event.currentTarget.children[1].children[0].innerText;
+
   const drinkTypeItem = drinkType.find((cola) => cola.name == colaName);
   if (drinkTypeItem.count > 0) {
     const tempColaListItem = tempList.find(
@@ -206,17 +212,29 @@ function pushTempToOwn() {
       }
     });
   });
-
   const result = tempList.filter((temCola) => {
     return !ownColaList.some((ownCola) => temCola.name === ownCola.name);
   });
   tempList = [];
-
   ownColaList.push(...result);
   drawOwnColaList(ownColaList);
   drawShoppingListItem(tempList);
+  drawVendingMenu(drinkType);
 }
-function inputMoney() {
+
+function handleMoneyReturnBtn() {
+  totalMoney += leftMoney;
+  leftMoney = 0;
+  totalMoneySet();
+  leftMoneySet();
+}
+
+function inputMoney(event) {
+  event.preventDefault();
+
+  if ($moneyInput.value == "") {
+    return alert("금액을 입력해주세요.");
+  }
   if (totalMoney - parseInt($moneyInput.value) >= 0) {
     totalMoney -= parseInt($moneyInput.value);
     leftMoney += parseInt($moneyInput.value);
@@ -224,22 +242,20 @@ function inputMoney() {
     totalMoneySet();
     leftMoneySet();
   } else {
-    alert("돈이 부족합니다.");
+    alert("금액이 부족합니다.");
   }
 }
-
 function menuSelect(event) {
-  if (event.currentTarget.classList.contains("sold_out") === true) {
-    return;
-  }
   event.currentTarget.classList.toggle("select");
 }
+
 function eventListener() {
   $getButton.addEventListener("click", pushTempToOwn);
   $inputMoneyBtn.addEventListener("click", inputMoney);
-  for (let i = 0; i < $vendingFigures.length; i++) {
-    $vendingFigures[i].addEventListener("click", menuSelect);
+  for (let i = 0; i < $vendingItem.length; i++) {
+    $vendingItem[i].addEventListener("click", handleBuyButton);
   }
+  $MoneyReturnBtn.addEventListener("click", handleMoneyReturnBtn);
 }
 function init() {
   totalMoneySet();
@@ -247,8 +263,6 @@ function init() {
   drawOwnColaList(ownColaList);
   drawShoppingListItem(tempList);
   drawVendingMenu(drinkType);
-  $vendingFigures[0].classList.toggle("select");
-  $vendingFigures[4].classList.toggle("select");
 }
 
 // 장바구니에서 환불기능 만들기
