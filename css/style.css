@@ -210,9 +210,6 @@ section.controller > form#money_form {
 .money_unit::after {
   content: " 원";
 }
-div.left_money > span#leftMoney::after {
-  content: " 원";
-}
 
 form#money_form > input#money_input {
   height: 33px;
@@ -255,6 +252,7 @@ ul.shopping_list > li {
   margin-bottom: 6px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 ul.shopping_list img {
   width: 18px;
@@ -305,10 +303,6 @@ div.money_wrapper > div.own_money {
 }
 div.own_money > span:nth-child(2) {
   font-weight: 700;
-}
-
-div.own_money > span:nth-child(2)::after {
-  content: " 원";
 }
 
 section.output {

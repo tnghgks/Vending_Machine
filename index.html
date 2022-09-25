@@ -47,6 +47,7 @@
               id="money_input"
               type="number"
               placeholder="입금액 입력"
+              min="0"
               required
             />
             <button id="inputMoneyBtn">입금</button>
@@ -66,7 +67,7 @@
         <div class="money_wrapper">
           <div class="own_money">
             <span>소지금 :</span>
-            <span id="totalMoney"></span>
+            <span id="totalMoney" class="money_unit"></span>
           </div>
         </div>
         <section class="output">
@@ -74,7 +75,9 @@
           <div class="own_cola">
             <ul id="ownDrinkList" class="own_cola_list"></ul>
           </div>
-          <span class="used_money">총금액 : 9,000원</span>
+          <span class="used_money"
+            >총금액 : <span id="totalPay" class="money_unit"></span
+          ></span>
         </section>
       </section>
     </main>
