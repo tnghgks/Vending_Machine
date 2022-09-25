@@ -19,19 +19,18 @@ button {
 }
 /* 스크롤 수정 */
 *::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #fff;
   background-clip: padding-box;
-  display: block;
-  width: 4px;
   border-radius: 50px;
-  border: 4px solid transparent;
+  border: 3px solid transparent;
 }
 *::-webkit-scrollbar-track {
   background-color: transparent;
+  margin-top: 6px;
 }
 
 /*스크린 리더 전용*/
@@ -212,6 +211,7 @@ section.controller > form#money_form {
 }
 
 form#money_form > input#money_input {
+  width: 200px;
   height: 33px;
   border: 1px solid #bdbdbd;
   padding: 6px;
@@ -219,6 +219,10 @@ form#money_form > input#money_input {
   color: #bdbdbd;
   opacity: 0.5;
   font-family: inherit;
+}
+
+form#money_form > input#money_input:focus {
+  outline: none;
 }
 form#money_form > button#inputMoneyBtn {
   width: 94px;
@@ -269,6 +273,7 @@ li.shopping_item > div.item_count {
   border-radius: 5px;
   text-align: center;
   line-height: 30px;
+  font-weight: 500;
 }
 
 /* 결과창 */
@@ -406,7 +411,6 @@ li.own_cola_item > div.item_count {
     font-family: "Noto Sans KR";
     font-size: var(--base-font-size);
   }
-
   header {
     margin-bottom: 18px;
   }
@@ -423,10 +427,35 @@ li.own_cola_item > div.item_count {
     margin-right: 0px;
   }
 
-  section.controller > input#money_input {
+  form#money_form > input#money_input {
     text-align: right;
   }
-
+  section.output {
+    height: auto;
+  }
+  section.output > h2 {
+    margin-top: 0px;
+    margin-bottom: 13px;
+    font-size: var(--money-font-size);
+    line-height: 20px;
+    font-weight: 700;
+  }
+  section.output > span.used_money {
+    margin-bottom: 0px;
+    font-weight: 500;
+    font-size: var(--button-font-size);
+    line-height: 17px;
+    align-self: flex-end;
+  }
+  section.vending_result > div.money_wrapper {
+    margin-bottom: 0px;
+    height: auto;
+  }
+  div.money_wrapper > div.own_money {
+    width: 306px;
+    height: 32px;
+    margin-bottom: 43px;
+  }
   ul.shopping_list > li {
     border: 1px solid #bdbdbd;
     background-color: #fff;
@@ -435,9 +464,14 @@ li.own_cola_item > div.item_count {
     margin-bottom: 6px;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
+  }
+  ul.own_cola_list > li {
+    border: 1px solid #bdbdbd;
+    box-sizing: border-box;
   }
 
-  section.vending_result > div.money_wrapper {
-    margin-bottom: 41px;
+  section.output > span.used_money {
+    margin-bottom: 43px;
   }
 }

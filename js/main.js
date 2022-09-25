@@ -28,7 +28,6 @@ const drinkType = [
     name: "Violet_Cola",
     imgPath: "img/Violet_Cola.png",
     alt: "보라색 캔 콜라",
-
     price: 1000,
     count: 0,
   },
