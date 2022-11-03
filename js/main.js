@@ -29,16 +29,16 @@ function drawDrink(obj) {
   const div = document.createElement("div");
   li.classList = "own_cola_item";
   div.classList = "item_count";
-  div.innerText = obj.count;
+  div.textContent = obj.count;
   img.src = drinkObj.imgPath;
   img.alt = drinkObj.alt;
-  span.innerHTML = drinkObj.name;
+  span.textContent = drinkObj.name;
   li.append(img, span, div);
   return li;
 }
 //벤딩 머신 음료 리스트 아이템 그리기
-function drawVendingItem(drinkArr) {
-  const drinkObj = findDrinkObjs(drinkArr);
+function drawVendingItem(drinkItem) {
+  const drinkObj = findDrinkObjs(drinkItem);
   const li = document.createElement("li");
   const img = document.createElement("img");
   const div = document.createElement("div");
@@ -55,10 +55,10 @@ function drawVendingItem(drinkArr) {
   li.classList.add("cola_wrapper");
   img.src = drinkObj.imgPath;
   img.alt = drinkObj.alt;
-  span.innerText = drinkObj.name;
+  span.textContent = drinkObj.name;
   button.type = "button";
   button.classList.add("buy_button");
-  button.innerText = drinkObj.price;
+  button.textContent = drinkObj.price;
   div.classList = "cola_caption";
   div.append(span, button);
   li.append(img, div);
@@ -69,22 +69,22 @@ function drawVendingItem(drinkArr) {
 // 소유한 콜라 목록 그리기
 function drawOwnColaList(drinkArr) {
   const $frag = document.createDocumentFragment();
-  $ownDrinkList.innerHTML = "";
-  let totalAmount = 0;
+  $ownDrinkList.textContent = "";
+  let totalPrice = 0;
   drinkArr.map((obj) => {
     $frag.append(drawDrink(obj));
 
     const result = drinkType.find((cola) => cola.name == obj.name);
     // 총 가격
-    totalAmount += result.price * obj.count;
+    totalPrice += result.price * obj.count;
   });
   $ownDrinkList.append($frag);
-  $totalPay.innerText = totalAmount.toLocaleString();
+  $totalPay.innerText = totalPrice.toLocaleString();
 }
 
 // 장바구니속 콜라 아이템 그리기
 function drawShoppingListItem(drinkArr) {
-  $shoppingList.innerHTML = "";
+  $shoppingList.textContent = "";
   drinkArr.forEach((obj) => {
     const li = drawDrink(obj);
     li.addEventListener("click", handleShoppingItem);
@@ -94,7 +94,7 @@ function drawShoppingListItem(drinkArr) {
 
 // 벤딩머신 음료 메뉴 그리기
 function drawVendingMenu(drinkArr) {
-  $vendingMenu.innerHTML = "";
+  $vendingMenu.textContent = "";
   const $frag = document.createDocumentFragment();
   drinkArr.forEach((obj) => {
     $frag.append(drawVendingItem(obj));
