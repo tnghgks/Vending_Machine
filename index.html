@@ -43,13 +43,7 @@
           <button id="MoneyReturnBtn" type="button">거스름돈 반환</button>
           <label class="text-hide" for="money_input">입금액 입력</label>
           <form id="money_form" action="#">
-            <input
-              id="money_input"
-              type="number"
-              placeholder="입금액 입력"
-              min="0"
-              required
-            />
+            <input id="money_input" type="number" placeholder="입금액 입력" min="0" required />
             <button id="inputMoneyBtn">입금</button>
           </form>
           <ul id="shoppingList" class="shopping_list">
@@ -75,12 +69,10 @@
           <div class="own_cola">
             <ul id="ownDrinkList" class="own_cola_list"></ul>
           </div>
-          <span class="used_money"
-            >총금액 : <span id="totalPay" class="money_unit"></span
-          ></span>
+          <span class="used_money">총금액 : <span id="totalPay" class="money_unit"></span></span>
         </section>
       </section>
     </main>
-    <script src="js/main.js"></script>
+    <script src="js/main.js" type="module"></script>
   </body>
 </html>
