@@ -14,31 +14,36 @@ const $totalPay = document.querySelector("#totalPay");
 let totalMoney = 25000;
 let leftMoney = 1000;
 
-// drinkType에서 매치되는 콜라 찾기
-function findDrinkObjs(obj) {
-  const drinkObj = drinkType.find((drink) => drink.name == obj.name);
-  return drinkObj;
+// drinkType에서 이름으로 매치되는 콜라 찾기
+function searchDrinkList(colaName) {
+  return drinkType.find((cola) => cola.name == colaName);
+}
+
+// tempList에서 이름으로 매치되는 콜라 찾기
+function searchTempList(colaName) {
+  return tempList.find((cola) => cola.name == colaName);
 }
 
 // 콜라 장바구니 속 아이템 그리기
-function drawDrink(obj) {
-  const drinkObj = findDrinkObjs(obj);
+function drawDrink(tempDrinkItem) {
+  const drinkObj = searchDrinkList(tempDrinkItem.name);
   const li = document.createElement("li");
   const img = document.createElement("img");
   const span = document.createElement("span");
   const div = document.createElement("div");
   li.classList = "own_cola_item";
   div.classList = "item_count";
-  div.textContent = obj.count;
+  div.textContent = tempDrinkItem.count;
   img.src = drinkObj.imgPath;
   img.alt = drinkObj.alt;
   span.textContent = drinkObj.name;
   li.append(img, span, div);
   return li;
 }
+
 //벤딩 머신 음료 리스트 아이템 그리기
 function drawVendingItem(drinkItem) {
-  const drinkObj = findDrinkObjs(drinkItem);
+  const drinkObj = searchDrinkList(drinkItem.name);
   const li = document.createElement("li");
   const img = document.createElement("img");
   const div = document.createElement("div");
@@ -56,6 +61,7 @@ function drawVendingItem(drinkItem) {
   img.src = drinkObj.imgPath;
   img.alt = drinkObj.alt;
   span.textContent = drinkObj.name;
+  span.classList.add("cola_name");
   button.type = "button";
   button.classList.add("buy_button");
   button.textContent = drinkObj.price;
@@ -128,17 +134,9 @@ function spendMoney(cost) {
   }
 }
 
-function searchDrinkList(colaName) {
-  return drinkType.find((cola) => cola.name == colaName);
-}
-
-function searchTempList(colaName) {
-  return tempList.find((cola) => cola.name == colaName);
-}
-
 // 구매버튼 클릭 시
 function handleBuyButton(event) {
-  const colaName = event.currentTarget.children[1].children[0].innerText;
+  const colaName = event.currentTarget.querySelector(".cola_name").textContent;
 
   const drinkTypeItem = searchDrinkList(colaName);
 
@@ -200,24 +198,28 @@ function handleMoneyReturnBtn() {
 }
 
 // 장바구니에 있는 아이템 클릭햇을때
-function handleShoppingItem(event) {
+function handleShoppingItem() {
   let index = 0;
+  // 클릭한 요소가 tempList와 비교해서 참조하는 객체 가져오기
   const findCola = tempList.find((tempCola, cola_index) => {
-    const result = tempCola.name == event.currentTarget.children[1].innerText;
-    if (result) {
+    // 여기서 this는 Event의 currentTarget과 동일
+    const isMatched = tempCola.name == this.getElementsByTagName("span")[0].textContent;
+    if (isMatched) {
       index = cola_index;
     }
-    return result;
+    return isMatched;
   });
 
-  const result = searchDrinkList(findCola.name);
+  const drinkItem = searchDrinkList(findCola.name);
+  // 장바구니 아이템들을 눌렀을때 수량이 0이된다면 장바구니에서 삭제
   if (findCola.count - 1 == 0) {
     tempList.splice(index, 1);
   } else {
     findCola.count -= 1;
   }
-  result.count += 1;
-  leftMoney += result.price;
+  //환불되었으니 DB에 있는 음료 수량 증가
+  drinkItem.count += 1;
+  leftMoney += drinkItem.price;
   leftMoneySet();
   drawShoppingListItem(tempList);
   drawVendingMenu(drinkType);
@@ -239,11 +241,6 @@ function inputMoney(event) {
   } else {
     alert("금액이 부족합니다.");
   }
-}
-
-// 메뉴에 select 클래스 부여
-function menuSelect(event) {
-  event.currentTarget.classList.toggle("select");
 }
 
 // 메뉴아이템마다 이벤트리스너 추가
