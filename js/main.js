@@ -20,7 +20,7 @@ function findDrinkObjs(obj) {
   return drinkObj;
 }
 
-// 콜라 리스트속 아이템 그리기
+// 콜라 장바구니 속 아이템 그리기
 function drawDrink(obj) {
   const drinkObj = findDrinkObjs(obj);
   const li = document.createElement("li");
@@ -36,18 +36,49 @@ function drawDrink(obj) {
   li.append(img, span, div);
   return li;
 }
+//벤딩 머신 음료 리스트 아이템 그리기
+function drawVendingItem(drinkArr) {
+  const drinkObj = findDrinkObjs(drinkArr);
+  const li = document.createElement("li");
+  const img = document.createElement("img");
+  const div = document.createElement("div");
+  const span = document.createElement("span");
+  const button = document.createElement("button");
+
+  if (drinkObj.count == 0) {
+    li.classList.toggle("sold_out");
+  }
+
+  if (menuInTempList(drinkObj.name)) {
+    li.classList.add("select");
+  }
+  li.classList.add("cola_wrapper");
+  img.src = drinkObj.imgPath;
+  img.alt = drinkObj.alt;
+  span.innerText = drinkObj.name;
+  button.type = "button";
+  button.classList.add("buy_button");
+  button.innerText = drinkObj.price;
+  div.classList = "cola_caption";
+  div.append(span, button);
+  li.append(img, div);
+  eventListener(li);
+  return li;
+}
 
 // 소유한 콜라 목록 그리기
 function drawOwnColaList(drinkArr) {
+  const $frag = document.createDocumentFragment();
   $ownDrinkList.innerHTML = "";
   let totalAmount = 0;
   drinkArr.map((obj) => {
-    const li = drawDrink(obj);
-    $ownDrinkList.append(li);
+    $frag.append(drawDrink(obj));
 
     const result = drinkType.find((cola) => cola.name == obj.name);
+    // 총 가격
     totalAmount += result.price * obj.count;
   });
+  $ownDrinkList.append($frag);
   $totalPay.innerText = totalAmount.toLocaleString();
 }
 
@@ -66,32 +97,7 @@ function drawVendingMenu(drinkArr) {
   $vendingMenu.innerHTML = "";
   const $frag = document.createDocumentFragment();
   drinkArr.forEach((obj) => {
-    const drinkObj = findDrinkObjs(obj);
-    const li = document.createElement("li");
-    const img = document.createElement("img");
-    const div = document.createElement("div");
-    const span = document.createElement("span");
-    const button = document.createElement("button");
-
-    if (drinkObj.count == 0) {
-      li.classList = "cola_wrapper sold_out";
-    } else {
-      li.classList = "cola_wrapper";
-    }
-    if (menuInTempList(drinkObj.name)) {
-      li.classList.add("select");
-    }
-    img.src = drinkObj.imgPath;
-    img.alt = drinkObj.alt;
-    span.innerText = drinkObj.name;
-    button.type = "button";
-    button.classList.add("buy_button");
-    button.innerText = drinkObj.price;
-    div.classList = "cola_caption";
-    div.append(span, button);
-    li.append(img, div);
-    eventListener(li);
-    $frag.append(li);
+    $frag.append(drawVendingItem(obj));
   });
   $vendingMenu.append($frag);
 }
