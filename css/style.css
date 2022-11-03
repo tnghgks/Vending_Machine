@@ -150,10 +150,11 @@ button.buy_button::after {
 }
 
 .sold_out::after {
-  content: "";
+  content: "품절";
   position: absolute;
   width: 94px;
   height: 130px;
+  color: transparent;
   background: rgba(0, 0, 0, 0.8);
   background-image: url("../img/Sold-out.png");
   background-size: 62px 50px;

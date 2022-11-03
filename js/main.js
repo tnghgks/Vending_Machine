@@ -127,6 +127,7 @@ function drawShoppingListItem(drinkArr) {
 // 벤딩머신 음료 메뉴 그리기
 function drawVendingMenu(drinkArr) {
   $vendingMenu.innerHTML = "";
+  const $frag = document.createDocumentFragment();
   drinkArr.forEach((obj) => {
     const drinkObj = findDrinkObjs(obj);
     const li = document.createElement("li");
@@ -152,9 +153,10 @@ function drawVendingMenu(drinkArr) {
     div.classList = "cola_caption";
     div.append(span, button);
     li.append(img, div);
-    $vendingMenu.append(li);
-    eventListener();
+    eventListener(li);
+    $frag.append(li);
   });
+  $vendingMenu.append($frag);
 }
 // 장바구니 목록에 있는 아이템이 메뉴에 있는 아이템인지 bool 반환
 function menuInTempList(name) {
@@ -302,10 +304,8 @@ function menuSelect(event) {
 }
 
 // 메뉴아이템마다 이벤트리스너 추가
-function eventListener() {
-  for (let i = 0; i < $vendingItem.length; i++) {
-    $vendingItem[i].addEventListener("click", handleBuyButton);
-  }
+function eventListener(drinkitem) {
+  drinkitem.addEventListener("click", handleBuyButton);
 }
 
 // 초기화
