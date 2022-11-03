@@ -1,4 +1,4 @@
-import { drinkType, ownColaList, tempList } from "./fakeDB";
+import { drinkType, ownColaList, tempList } from "./fakeDB.js";
 
 const $ownDrinkList = document.querySelector("#ownDrinkList");
 const $vendingMenu = document.querySelector("#vendingMenu");
@@ -8,10 +8,9 @@ const $leftMoney = document.querySelector("#leftMoney");
 const $getButton = document.querySelector("#getButton");
 const $inputMoneyBtn = document.querySelector("#inputMoneyBtn");
 const $moneyInput = document.querySelector("#money_input");
-const $vendingItem = document.getElementsByClassName("cola_wrapper");
 const $MoneyReturnBtn = document.querySelector("#MoneyReturnBtn");
 const $totalPay = document.querySelector("#totalPay");
-console.log(drinkType);
+
 let totalMoney = 25000;
 let leftMoney = 1000;
 
