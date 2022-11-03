@@ -1,5 +1,3 @@
-import { drinkType, ownColaList, tempList } from "./fakeDB.js";
-
 const $ownDrinkList = document.querySelector("#ownDrinkList");
 const $vendingMenu = document.querySelector("#vendingMenu");
 const $shoppingList = document.querySelector("#shoppingList");
@@ -13,6 +11,69 @@ const $totalPay = document.querySelector("#totalPay");
 
 let totalMoney = 25000;
 let leftMoney = 1000;
+
+const drinkType = [
+  {
+    id: 1,
+    name: "Original_Cola",
+    imgPath: "img/Original_Cola.png",
+    alt: "빨간 오리지널 캔 콜라",
+    price: 1000,
+    count: 3,
+  },
+  {
+    id: 2,
+    name: "Violet_Cola",
+    imgPath: "img/Violet_Cola.png",
+    alt: "보라색 캔 콜라",
+    price: 1000,
+    count: 0,
+  },
+  {
+    id: 3,
+    name: "Yellow_Cola",
+    imgPath: "img/Yellow_Cola.png",
+    alt: "노란 캔 콜라",
+    price: 1000,
+    count: 3,
+  },
+  {
+    id: 4,
+    name: "Cool_Cola",
+    imgPath: "img/Cool_Cola.png",
+    alt: "하늘색 캔 콜라",
+    price: 1000,
+    count: 3,
+  },
+  {
+    id: 5,
+    name: "Green_Cola",
+    imgPath: "img/Green_Cola.png",
+    alt: "녹색 캔 콜라",
+    price: 1000,
+    count: 3,
+  },
+  {
+    id: 6,
+    name: "Orange_Cola",
+    imgPath: "img/Orange_Cola.png",
+    alt: "오렌지색 캔 콜라",
+    price: 1000,
+    count: 3,
+  },
+];
+
+let ownColaList = [
+  { name: "Original_Cola", count: 1 },
+  { name: "Green_Cola", count: 2 },
+  { name: "Orange_Cola", count: 1 },
+  { name: "Violet_Cola", count: 5 },
+];
+
+let tempList = [
+  { name: "Original_Cola", count: 1 },
+  { name: "Green_Cola", count: 2 },
+];
 
 // drinkType에서 이름으로 매치되는 콜라 찾기
 function searchDrinkList(colaName) {
